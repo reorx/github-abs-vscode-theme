@@ -77,6 +77,16 @@
         "label": "GitHub Dark",
         "uiTheme": "vs-dark",
         "path": "./themes/dark.json"
+      },
+      {
+        "label": "GitHub Light ABS",
+        "uiTheme": "vs",
+        "path": "./themes/light-abs.json"
+      },
+      {
+        "label": "GitHub Dark ABS",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark-abs.json"
       }
     ]
   },
