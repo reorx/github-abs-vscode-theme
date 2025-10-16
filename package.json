@@ -1,9 +1,9 @@
 {
-  "name": "github-vscode-theme",
-  "displayName": "GitHub Theme",
-  "description": "GitHub theme for VS Code",
-  "version": "6.3.5",
-  "publisher": "GitHub",
+  "name": "github-abs-vscode-theme",
+  "displayName": "GitHub Alabaster Theme",
+  "description": "GitHub Alabaster theme for VS Code",
+  "version": "1.0.0",
+  "publisher": "reorx",
   "license": "MIT",
   "icon": "icon.png",
   "galleryBanner": {
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/primer/github-vscode-theme"
+    "url": "https://github.com/reorx/github-abs-vscode-theme"
   },
   "bugs": {
-    "url": "https://github.com/primer/github-vscode-theme/issues"
+    "url": "https://github.com/reorx/github-abs-vscode-theme/issues"
   },
   "engines": {
     "vscode": "^1.43.0"
@@ -28,8 +28,8 @@
     "github",
     "light",
     "dark",
-    "protanopia",
-    "colorblind"
+    "minimalism",
+    "alabaster"
   ],
   "contributes": {
     "themes": [
