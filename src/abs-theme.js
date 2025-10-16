@@ -48,6 +48,31 @@ function getAbsTheme({ theme, name }) {
     diffChangedBg: isLight ? scale.orange[1] : scale.orange[8],
   };
 
+  const semanticRules = [
+    // FUNCTION/CLASS DECLARATIONS - Yellow (brightest, top-level)
+    {
+      semanticScopes: [
+        // "*.declaration",
+        "function.declaration",
+        "class.declaration",
+        "type.declaration",
+        "interface.declaration",
+      ],
+      settings: {
+        foreground: absColors.functionDeclaration,
+      },
+    }
+  ]
+  const semanticTokenColors = {};
+
+  semanticRules.forEach(rule => {
+    rule.semanticScopes.forEach(scope => {
+      semanticTokenColors[scope] = rule.settings;
+    });
+  });
+
+  baseTheme.semanticTokenColors = semanticTokenColors;
+
   // Override ONLY the tokenColors with concept.md principles
   baseTheme.tokenColors = [
     // COMMENTS - Purple (bright, not grey! Comments are important documentation)
@@ -62,7 +87,6 @@ function getAbsTheme({ theme, name }) {
     {
       scope: [
         "string",
-        "string punctuation.section.embedded source",
       ],
       settings: {
         foreground: absColors.stringConstant
@@ -83,23 +107,22 @@ function getAbsTheme({ theme, name }) {
     },
 
     // FUNCTION/CLASS DECLARATIONS - Yellow (brightest, top-level)
+    /*
     {
       scope: [
-        "entity.name.function",
-        "entity.name.class",
-        "entity.name.type",
-        "meta.function-call.generic",
       ],
       settings: {
         foreground: absColors.functionDeclaration
       }
     },
+    */
 
     // VARIABLE/PARAMETER DECLARATIONS - Blue
     {
       scope: [
         "variable.parameter",
         "meta.definition.variable",
+        "variable.object.property",
         "variable.other.constant.property",
       ],
       settings: {
@@ -125,6 +148,7 @@ function getAbsTheme({ theme, name }) {
     // - Variable references (not declarations)
     // - Function calls (not declarations)
     // - Operators
+    /*
     {
       scope: [
         "keyword",
@@ -143,6 +167,7 @@ function getAbsTheme({ theme, name }) {
         foreground: absColors.base,
       },
     },
+    */
 
     // SPECIAL CASES
 
