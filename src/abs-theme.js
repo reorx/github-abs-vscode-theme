@@ -34,7 +34,7 @@ function getAbsTheme({ theme, name }) {
     // Blue - Variable and parameter declarations
     declaration: isLight ? scale.blue[6] : scale.blue[2],
     // Punctuation - Dimmed
-    punctuation: isLight ? scale.gray[5] : scale.gray[4],
+    punctuation: isLight ? scale.gray[5] : scale.gray[3],
     // Base text color - for everything else
     base: rawColors.fg.default,
     // Error colors - keep red for errors
@@ -48,6 +48,8 @@ function getAbsTheme({ theme, name }) {
     diffChangedBg: isLight ? scale.orange[1] : scale.orange[8],
   };
 
+  // NOTE only for semantic tokens (very limited)
+  // ref: https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#semantic-token-provider
   const semanticRules = [
     // FUNCTION/CLASS DECLARATIONS - Yellow (brightest, top-level)
     {
@@ -61,7 +63,17 @@ function getAbsTheme({ theme, name }) {
       settings: {
         foreground: absColors.functionDeclaration,
       },
-    }
+    },
+
+    // VARIABLE/PARAMETER DECLARATIONS - Blue
+    {
+      semanticScopes: [
+        'parameter.declaration',
+      ],
+      settings: {
+        foreground: absColors.declaration,
+      }
+    },
   ]
   const semanticTokenColors = {};
 
@@ -75,6 +87,33 @@ function getAbsTheme({ theme, name }) {
 
   // Override ONLY the tokenColors with concept.md principles
   baseTheme.tokenColors = [
+    // FUNCTION/CLASS DECLARATIONS - Yellow (brightest, top-level)
+    {
+      scope: [
+        // tsx:
+        // { ... }
+        'punctuation.section.embedded.begin.tsx',
+        'punctuation.section.embedded.end.tsx',
+        // control flow
+        'keyword.control.flow.tsx',
+      ],
+      settings: {
+        foreground: absColors.functionDeclaration,
+      },
+    },
+
+    // base color rewrite
+    {
+      scope: [
+        // variable in template literal
+        'meta.embedded.line.js',
+        'meta.embedded.line.tsx',
+      ],
+      settings: {
+        foreground: absColors.base,
+      },
+    },
+
     // COMMENTS - Purple (bright, not grey! Comments are important documentation)
     {
       scope: ["comment", "punctuation.definition.comment", "string.comment"],
@@ -120,10 +159,11 @@ function getAbsTheme({ theme, name }) {
     // VARIABLE/PARAMETER DECLARATIONS - Blue
     {
       scope: [
-        "variable.parameter",
+        //"variable.parameter",
         "meta.definition.variable",
         "variable.object.property",
         "variable.other.constant.property",
+        // tsx:
       ],
       settings: {
         foreground: absColors.declaration
@@ -136,6 +176,12 @@ function getAbsTheme({ theme, name }) {
         "punctuation",
         "meta.brace",
         "meta.delimiter",
+        // tsx:
+        // attributes value like class names should be dimmed
+        //'string.quoted.double.tsx',
+        //'string.quoted.single.tsx',
+        // attribute name
+        'entity.other.attribute-name.tsx',
       ],
       settings: {
         foreground: absColors.punctuation

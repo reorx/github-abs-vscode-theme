@@ -8,3 +8,15 @@ https://marketplace.visualstudio.com/items?itemName=reorx.github-abs-vscode-them
 Or search for "GitHub Alabaster Theme" in the Extensions view.
 
 ![](./sample-dark.png)
+
+
+## Development Notes
+
+Add this to keybindings.json for easier debugging:
+
+```
+    {
+        "key": "cmd+shift+ctrl+i",
+        "command": "editor.action.inspectTMScopes"
+    },
+```
