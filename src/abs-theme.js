@@ -23,6 +23,9 @@ function getAbsTheme({ theme, name }) {
   const rawColors = getColors(baseThemeName);
   const scale = rawColors.scale;
 
+  // tune foreground
+  baseTheme.colors['editor.foreground'] = isLight ? baseTheme.colors['editor.foreground'] : '#e1e1e1';
+
   // Four-color palette following concept.md
   const absColors = {
     // Purple - Comments (bright, not grey!)
@@ -32,11 +35,13 @@ function getAbsTheme({ theme, name }) {
     // Yellow - Top-level and function declarations (brightest, respecting hierarchy)
     functionDeclaration: isLight ? scale.yellow[6] : scale.yellow[2],
     // Blue - Variable and parameter declarations
-    declaration: isLight ? scale.blue[6] : scale.blue[2],
+    declaration: isLight ? scale.blue[6] : scale.blue[3],
     // Punctuation - Dimmed
     punctuation: isLight ? scale.gray[5] : scale.gray[3],
     // Base text color - for everything else
     base: rawColors.fg.default,
+    htmlTag: isLight ? scale.blue[4] : scale.blue[1],
+    logicOp: isLight ? scale.coral[4] : scale.coral[1],
     // Error colors - keep red for errors
     error: isLight ? scale.red[7] : scale.red[2],
     // Diff colors
@@ -94,11 +99,32 @@ function getAbsTheme({ theme, name }) {
         // { ... }
         'punctuation.section.embedded.begin.tsx',
         'punctuation.section.embedded.end.tsx',
-        // control flow
-        'keyword.control.flow.tsx',
       ],
       settings: {
         foreground: absColors.functionDeclaration,
+      },
+    },
+
+    // html tag - light blue or cyan
+    {
+      scope: [
+        'entity.name.tag.tsx',
+      ],
+      settings: {
+        foreground: absColors.htmlTag,
+      },
+    },
+
+    // logic operator - coral
+    {
+      scope: [
+        // &&, ||
+        'keyword.operator.logical.tsx',
+        // `return`
+        'keyword.control.flow.tsx',
+      ],
+      settings: {
+        foreground: absColors.logicOp,
       },
     },
 
@@ -188,32 +214,6 @@ function getAbsTheme({ theme, name }) {
       },
     },
 
-    // BASE TEXT COLOR - Everything else stays unhighlighted
-    // This includes:
-    // - Language keywords (if, else, function, class, const, let, var, return, etc.)
-    // - Variable references (not declarations)
-    // - Function calls (not declarations)
-    // - Operators
-    /*
-    {
-      scope: [
-        "keyword",
-        "storage",
-        "storage.type",
-        "variable.other",
-        "variable.language",
-        "support",
-        "meta.property-name",
-        "entity.name.tag",
-        "support.class.component",
-        "constant.other",
-        "entity.other",
-      ],
-      settings: {
-        foreground: absColors.base,
-      },
-    },
-    */
 
     // SPECIAL CASES
 
