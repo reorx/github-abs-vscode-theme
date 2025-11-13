@@ -31,19 +31,19 @@ function getAbsTheme({ theme, name }) {
     // Purple - Comments (bright, not grey!)
     comment: isLight ? scale.purple[5] : scale.purple[2],
     // Green - Strings and numeric constants
-    stringConstant: isLight ? scale.green[6] : scale.green[2],
+    stringConstant: isLight ? scale.green[5] : scale.green[2],
     // Yellow - Top-level and function declarations (brightest, respecting hierarchy)
-    functionDeclaration: isLight ? scale.yellow[6] : scale.yellow[2],
+    functionDeclaration: isLight ? scale.yellow[4] : scale.yellow[2],
     // Blue - Variable and parameter declarations
-    declaration: isLight ? scale.blue[6] : scale.blue[3],
+    declaration: isLight ? scale.blue[5] : scale.blue[3],
     // Punctuation - Dimmed
-    punctuation: isLight ? scale.gray[5] : scale.gray[3],
+    punctuation: isLight ? scale.gray[4] : scale.gray[3],
     // Base text color - for everything else
     base: rawColors.fg.default,
     htmlTag: isLight ? scale.blue[4] : scale.blue[1],
-    logicOp: isLight ? scale.coral[4] : scale.coral[1],
+    logicOp: isLight ? scale.coral[5] : scale.coral[1],
     // Error colors - keep red for errors
-    error: isLight ? scale.red[7] : scale.red[2],
+    error: isLight ? scale.red[5] : scale.red[2],
     // Diff colors
     diffAdded: isLight ? scale.green[6] : scale.green[1],
     diffDeleted: isLight ? scale.red[7] : scale.red[2],
