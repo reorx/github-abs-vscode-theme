@@ -134,6 +134,8 @@ function getAbsTheme({ theme, name }) {
         // variable in template literal
         'meta.embedded.line.js',
         'meta.embedded.line.tsx',
+        // expression in template literal
+        'meta.template.expression.ts',
       ],
       settings: {
         foreground: absColors.base,
