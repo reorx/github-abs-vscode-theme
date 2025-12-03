@@ -64,6 +64,7 @@ function getAbsTheme({ theme, name }) {
         "class.declaration",
         "type.declaration",
         "interface.declaration",
+        'method.declaration',
       ],
       settings: {
         foreground: absColors.functionDeclaration,
